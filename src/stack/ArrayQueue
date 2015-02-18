@@ -1,0 +1,43 @@
+package stack;
+
+public class ArrayQueue {
+	Object [] queue;
+	int size;
+	int front;
+	int back;
+	public ArrayQueue(int x){
+		queue = new Object[x];
+		front = 0;
+		back = 0;
+		size = 0;
+	}
+	public boolean isFull(){
+		return size == queue.length;
+	}
+	public boolean isEmpty(){
+		return size == 0;
+	}
+	public void enqueue(Object o){
+		if(!isFull()){
+			size++;
+			back = (back + 1)%queue.length;
+			queue[back] = o;
+		}
+	}
+	public Object dequeue(){
+		if(!isEmpty()){
+			size--;	
+			front = (front -1)%queue.length;
+			Object temp = queue[front];
+			queue[front] = null;
+			return temp;
+		}
+		return null;//throw exceptions?
+	}
+	public Object peek(){
+		if(!isEmpty())
+			return queue[front];
+		return null;
+	}
+}
+
